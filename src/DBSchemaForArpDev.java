@@ -25,19 +25,19 @@ import jxl.write.biff.RowsExceededException;
  * @author GENGFO
  * @version 1.0, 2006-6-21
  */
-public class DBSchemaForIvoDev {
+public class DBSchemaForArpDev {
 
 	final static String driverClass = "oracle.jdbc.driver.OracleDriver";
 
-	final static String connectionURL = "jdbc:oracle:thin:@shasudv7:1521:ivodb";
+	final static String connectionURL = "jdbc:oracle:thin:@146.222.65.142:1521:irarpdb";
 
-	final static String userID = "ivo_aeowner";
+	final static String userID = "arpowner";
 
-	final static String userPassword = "ivoaeowner";
+	final static String userPassword = "arpowner";
 
 	Connection con = null;
 
-	public DBSchemaForIvoDev() {
+	public DBSchemaForArpDev() {
 
 		try {
 
@@ -110,7 +110,7 @@ public class DBSchemaForIvoDev {
 
 		WritableWorkbook workbook = Workbook
 				.createWorkbook(new File(
-						"IPSDBSchema.xls"));
+						"ARPDBSchema.xls"));
 		WritableSheet sheet = workbook.createSheet("All Tables", 0);
 
 		// show all tables
@@ -254,7 +254,7 @@ public class DBSchemaForIvoDev {
 		DatabaseMetaData md = null;
 		md = con.getMetaData();
 		String[] names = { "TABLE" };
-		ResultSet tableNames = md.getTables(null, "IVO_AEOWNER", "%", names);
+		ResultSet tableNames = md.getTables(null, "ARPOWNER", "%", names);
 		while (tableNames.next()) {
 			System.out.println(tableNames.getString("TABLE_NAME"));
 			tablesList.add(tableNames.getString("TABLE_NAME"));
@@ -280,7 +280,7 @@ public class DBSchemaForIvoDev {
 			throws java.lang.InterruptedException, SQLException,
 			RowsExceededException, BiffException, WriteException, IOException {
 
-		DBSchemaForIvoDev dmde = new DBSchemaForIvoDev();
+		DBSchemaForArpDev dmde = new DBSchemaForArpDev();
 		dmde.writeTablesToExcel();
 		System.out.println("Write out done!");
 
